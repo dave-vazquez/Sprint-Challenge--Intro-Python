@@ -1,7 +1,9 @@
 import csv
 import os
 
-os.system("clear")
+os.system('clear')
+# os.system('cls') # windows
+
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
 

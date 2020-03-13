@@ -1,7 +1,14 @@
+import math
 import os
 
-# The following list comprehension exercises will make use of the 
-# defined Human class. 
+os.system('clear')
+# os.system('cls') # windows
+
+
+# The following list comprehension exercises will make use of the
+# defined Human class.
+
+
 class Human:
     def __init__(self, name, age):
         self.name = name
@@ -9,6 +16,7 @@ class Human:
 
     def __repr__(self):
         return f"<Human: {self.name}, {self.age}>"
+
 
 humans = [
     Human("Alice", 29),
@@ -22,7 +30,7 @@ humans = [
     Human("Igon", 41),
     Human("David", 31),
 ]
-os.system('clear')
+
 # Write a list comprehension that creates a list of names of everyone
 # whose name starts with 'D':
 print("Starts with D:")
@@ -68,6 +76,5 @@ print(g)
 
 # Write a list comprehension that contains the square root of all the ages.
 print("Square root of ages:")
-import math
 h = [math.sqrt(h.age) for h in humans]
 print(h)
