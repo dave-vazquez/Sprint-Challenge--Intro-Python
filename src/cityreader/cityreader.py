@@ -101,13 +101,19 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     # function definitions
     def normalize_coordinates():
         nonlocal lat1, lon1, lat2, lon2
-        if lat1 < lat2 or lon1 < lon2:
+        # expects the first set of coordinates to represent the lower or upper-left "corner"
+        # and second set of coordinates to represent the lower or upper-right "corner"
+        # .. if not, swap 'em
+        if lat1 > lat2 or lon1 > lon2:
             lat1, lat2 = lat2, lat1
             lon1, lon2 = lon2, lon1
 
     def city_within():
         nonlocal lat1, lon1, lat2, lon2
-        return (lat2 <= city.lat <= lat1) and (lon2 <= city.lon <= lon1)
+        # checks that the city falls on or between
+        # the lower or upper left (lat1, lon1) coordinate
+        # or the lower or upper right (lat2, lon2) coordinate
+        return (lat1 <= city.lat <= lat2) and (lon1 <= city.lon <= lon2)
 
     # function execution
     within = []
