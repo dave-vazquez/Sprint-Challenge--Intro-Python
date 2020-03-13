@@ -86,13 +86,39 @@ for c in cities:
 
 # TODO Get latitude and longitude values from the user
 
+lat1 = float(input("Enter first Lat: "))
+lon1 = float(input("Enter first Lon: "))
+
+lat2 = float(input("Enter second Lat: "))
+lon2 = float(input("Enter second Lon: "))
+
+os.system("clear")
+
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
-    # within will hold the cities that fall within the specified region
-    within = []
+    # function definitions
+    def normalize_coordinates():
+        nonlocal lat1, lon1, lat2, lon2
+        if lat1 < lat2 or lon1 < lon2:
+            lat1, lat2 = lat2, lat1
+            lon1, lon2 = lon2, lon1
 
-    # TODO Ensure that the lat and lon valuse are all floats
-    # Go through each city and check to see if it falls within
-    # the specified coordinates.
+    def city_within():
+        nonlocal lat1, lon1, lat2, lon2
+        return (lat2 <= city.lat <= lat1) and (lon2 <= city.lon <= lon1)
+
+    # function execution
+    within = []
+    normalize_coordinates()
+
+    for city in cities:
+        if city_within():
+            within.append(city)
 
     return within
+
+
+within = cityreader_stretch(lat1, lon1, lat2, lon2, cities)
+
+for city in within:
+    print(city)
